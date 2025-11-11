@@ -1,107 +1,117 @@
 # 🧩 Desafio Técnico – Sistema de Gerenciamento de Salas
 
-## 🏁 Visão Geral
-Este projeto foi desenvolvido como parte de um desafio técnico fullstack, com o objetivo de criar um sistema completo de gerenciamento de salas.
-A aplicação permite o cadastro, listagem, edição e exclusão de salas, bem como o controle de status (ex: ATIVA, INATIVA, EM USO), com integração total entre o backend (Spring Boot) e o frontend (React + Bootstrap).
+## 📖 Contexto
+Este projeto foi desenvolvido como parte de um desafio técnico fullstack, cujo objetivo é avaliar a capacidade de construir uma aplicação completa, com backend, frontend e integração entre ambos, aplicando boas práticas de desenvolvimento, organização de código e usabilidade.
 
-O sistema foi estruturado com foco em boas práticas, componentização, uso de hooks reutilizáveis, validações, e integração via API REST.
+O desafio propõe a criação de um sistema de gerenciamento de salas, permitindo cadastrar, editar, listar e excluir salas, além de controlar seus status (por exemplo: ATIVA, INATIVA, EM USO).
 
-## 🧱 Estrutura do Projeto
+## 🎯 Objetivo do Desafio
 
-O repositório contém dois diretórios principais:
+Desenvolver uma aplicação web fullstack composta por:
+
+- Um backend (API REST) que disponibilize os dados e operações sobre salas.
+
+- Um frontend que consuma essa API, exibindo as informações de forma intuitiva e responsiva.
+
+O foco é demonstrar:
+
+- Domínio de Spring Boot e React
+
+- Organização e boas práticas de arquitetura
+
+- Capacidade de integração entre frontend e backend
+
+- Atenção à qualidade do código e experiência do usuário
+
+### 🧱 Estrutura do Repositório
 ```
 📦 projeto-salas/
-├── backend/      # API REST com Spring Boot + JPA + H2/PostgreSQL
-└── frontend/     # Interface web desenvolvida em React + Bootstrap
+├── backend/      # API REST – Spring Boot + JPA
+└── frontend/     # Interface Web – React + Bootstrap
+
 ```
-## 🔹 Backend – /backend
 
-API REST desenvolvida em Java 17 + Spring Boot, responsável pelo gerenciamento de salas e integração com o frontend.
-Inclui endpoints para CRUD de salas e um endpoint específico para listar os valores do enum de status.
-
-### Principais Tecnologias:
-- Spring Boot (Web, JPA, Validation)
-
-- Spring Data JPA (com H2 ou PostgreSQL)
-
-- Lombok
-
-- Swagger (para documentação da API)
-
-- CORS configurado para integração com o frontend
-
-### Principais Tecnologias:
-- Spring Boot (Web, JPA, Validation)
-
-- Spring Data JPA (com H2 ou PostgreSQL)
-
-- Lombok
-
-- Swagger (para documentação da API)
-
-- CORS configurado para integração com o frontend
-
-### Funcionalidades:
+### ⚙️ Funcionalidades Principais
+🔹 Backend
 
 - CRUD completo de salas
 
-- Enum StatusSala (ATIVA, INATIVA, EM_USO)
+- Enum StatusSala com valores controlados: ATIVA, INATIVA, EM_USO
 
-- Endpoint para listar status dinamicamente (/api/salas/status)
+- Endpoint específico para listar os status do enum (/api/salas/status)
 
-- Validação de campos obrigatórios
+- Validações de entrada e tratamento de exceções
 
-- Tratamento de exceções e respostas padronizadas (ResponseEntity)
-#### 📘 Documentação detalhada do backend: backend/README.md
+- Uso de ResponseEntity e boas práticas REST
 
-## 🔹 Frontend – /frontend
-Aplicação React + Bootstrap, desenvolvida com componentes reutilizáveis e hooks customizados para comunicação com a API.
-Permite gerenciar salas com formulários validados e interface responsiva.
+- CORS habilitado para integração com o frontend
 
-### Principais Tecnologias:
-- React 18 (com Hooks)
-
-- React Bootstrap
-
-- Axios (para consumo da API)
-
-- React Router (para navegação)
-
-- ESLint + Prettier (padrão de código)
-
-### Funcionalidades:
+🔹 Frontend
 
 - Tela de listagem de salas
 
-- Formulário para criação e edição de salas
+- Formulário para criação e edição
 
-- Dropdown dinâmico de status (valores carregados do backend)
+- Dropdown dinâmico de status (carregado do backend)
 
-- Feedback de sucesso e erro
+- Feedback visual de sucesso e erro
 
-- Estrutura modular e de fácil manutenção
-#### Documentação detalhada do frontend: frontend/README.md
+- Interface responsiva utilizando React Bootstrap
+
+- Hooks personalizados para comunicação com a API (via Axios)
+
+### 🧰 Tecnologias Utilizadas
+
+### Backend
+
+- Java 17
+
+- Spring Boot 3
+
+- Spring Web / Data JPA / Validation
+
+- Lombok
+
+- H2 Database (modo dev)
+
+- Swagger OpenAPI
+
+- Maven
+
+### Frontend
+
+- React 18
+
+- React Bootstrap
+
+- Axios
+
+- React Router DOM
+
+- ESLint / Prettier
 
 ## 🚀 Como Executar o Projeto
 
+## 🔹 Frontend – /frontend
+
 ### ✅ Pré-requisitos
 
-Java 17+
+- Java 17+
 
-Node.js 18+
+- Node.js 18+
 
-Maven
+- Maven
 
-npm ou yarn
+- npm ou yarn
 
-### ⚙️ Passo a Passo
-
-#### 1️⃣ Clonar o repositório
+### 1️⃣ Clonar o repositório
 ```
 git clone https://github.com/seu-usuario/projeto-salas.git
+
 cd projeto-salas
 ```
-#### 2️⃣ Iniciar o Backend
+
+### 2️⃣ Iniciar o Backend
 ```
 cd backend
 mvn spring-boot:run
@@ -109,7 +119,7 @@ mvn spring-boot:run
 A API estará disponível em:
 👉 http://localhost:8080
 
-#### 3️⃣ Iniciar o Frontend
+### 3️⃣ Iniciar o Frontend
 ```
 cd ../frontend
 npm install
@@ -118,43 +128,57 @@ npm start
 A aplicação estará disponível em:
 👉 http://localhost:3000
 
-## 🔗 Integração Frontend ↔ Backend
-| Recurso        | Método | Endpoint            | Descrição                               |
-| -------------- | ------ | ------------------- | --------------------------------------- |
-| Listar salas   | GET    | `/api/salas`        | Retorna todas as salas cadastradas      |
-| Buscar por ID  | GET    | `/api/salas/{id}`   | Retorna os dados de uma sala            |
-| Criar sala     | POST   | `/api/salas`        | Cria uma nova sala                      |
-| Atualizar sala | PUT    | `/api/salas/{id}`   | Atualiza uma sala existente             |
-| Excluir sala   | DELETE | `/api/salas/{id}`   | Remove uma sala                         |
-| Listar status  | GET    | `/api/salas/status` | Retorna os valores do enum `StatusSala` |
+## 🔗 Endpoints Principais
+| Método | Endpoint            | Descrição                               |
+| :----- | :------------------ | :-------------------------------------- |
+| GET    | `/api/salas`        | Lista todas as salas                    |
+| GET    | `/api/salas/{id}`   | Busca uma sala pelo ID                  |
+| POST   | `/api/salas`        | Cria uma nova sala                      |
+| PUT    | `/api/salas/{id}`   | Atualiza uma sala existente             |
+| DELETE | `/api/salas/{id}`   | Exclui uma sala                         |
+| GET    | `/api/salas/status` | Retorna os valores do enum `StatusSala` |
 
-## 🧠 Conceitos Aplicados
+## 🧠 Critérios de Avaliação
+| Critério                                | Descrição                                                      |
+| --------------------------------------- | -------------------------------------------------------------- |
+| **Organização do código**               | Estrutura clara, separação de camadas, nomenclaturas adequadas |
+| **Boas práticas REST**                  | Uso correto de métodos HTTP e padrões de resposta              |
+| **Qualidade da interface**              | Layout limpo, responsivo e intuitivo                           |
+| **Integração entre frontend e backend** | Comunicação fluida via API                                     |
+| **Validação e tratamento de erros**     | Feedback apropriado em erros e sucesso                         |
+| **Uso de componentes reutilizáveis**    | Modularidade e reaproveitamento de código                      |
+| **Documentação**                        | Clareza e completude dos READMEs                               |
 
-- Separação de responsabilidades (Frontend/Backend)
+## 📦 Entrega Esperada
 
-- Boas práticas RESTful
+O repositório deve conter:
 
-- Validação e tratamento de erros
+1. Código fonte do backend (Spring Boot)
 
-- Consumo de API com Axios
+2. Código fonte do frontend (React)
 
-- Uso de Hooks e componentes reutilizáveis
+3. Arquivos README.md separados em:
 
-- Responsividade com Bootstrap
+    - backend/README.md → detalhes da API
 
-- Conversão e formatação de enums no frontend
+    - frontend/README.md → detalhes da interface
 
-## 🧪 Possíveis Extensões Futuras
+    - README.md (este arquivo) → visão geral do desafio
 
-- Autenticação com JWT
+4. Instruções completas para execução local do sistema
 
-- Filtro e paginação de salas
+## 📚 Aprendizados Demonstrados
+- Implementação de API RESTful com Java e Spring Boot
 
-- Dashboard com métricas de uso
+- Consumo de API com React + Axios
 
-- Testes automatizados (JUnit / Jest)
+- Conversão e exibição de enums no frontend
 
-- Integração com banco PostgreSQL em produção
+- Componentização e hooks personalizados
+
+- Criação de formulários dinâmicos e controlados
+
+- Integração fullstack completa
 
 ## 👨‍💻 Autor
 
@@ -163,8 +187,3 @@ Desenvolvido por: Wastenio da Silva Rocha
 Contato: wastenio.silva@gmail.com
 
 LinkedIn: https://linkedin.com/in/wastenio-da-silva-rocha
-
-## 📝 Licença
-
-Este projeto foi desenvolvido para fins de avaliação técnica e aprendizado.
-Uso livre para fins educacionais e de demonstração.
